@@ -1,10 +1,19 @@
 import React from 'react';
 import './menu-item.styles.scss';
+import { withRouter } from 'react-router-dom';
 
-const MenuItem = ({ title, imageUrl, size }) => {
-    // here title = props.title
+const MenuItem = ({ 
+                    title, 
+                    imageUrl, 
+                    size, 
+                    linkUrl, 
+                    history, 
+                    match, 
+                    location }) => {
+                        
+    console.log(history, match, location);
     return (
-        <div className={` ${size} menu-item`}>
+        <div className={` ${size} menu-item`} onClick={() => history.push(`${match.url}${linkUrl}`)}>
             <div className="background-image"
                 style={{
                     backgroundImage: `url(${imageUrl})`
@@ -18,4 +27,8 @@ const MenuItem = ({ title, imageUrl, size }) => {
     )
 }
 
-export default MenuItem;
+export default withRouter(MenuItem);
+
+// withRouter is a super component, one can get access to the history object's properties 
+// and the closest <Route>'s match via the withRouter higher-order component. withRouter will 
+// pass updated match, location, and history props to the wrapped component whenever it renders.
