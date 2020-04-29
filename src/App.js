@@ -78,6 +78,7 @@ const mapStateToProps = ({ user }) => ({
 const mapDispatchToProps = dispatch => ({
   // the value will be dispatched in the action of the reducer
   setCurrentUser: user => dispatch(setCurrentUser(user)) 
+  /// setCurrentUser is treated as props
   /// Dispatch always takes an action, and passes to all the reducers
 });
 
