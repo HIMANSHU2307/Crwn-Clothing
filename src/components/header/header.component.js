@@ -38,13 +38,14 @@ const Header = ({ currentUser, hidden }) => {
     )
 }
 
+/// Without Destructuring
 //const mapStateToProps = state => ({ // {user: {currentUser}, cart: {hidden}}
     // currentUser: state.user.currentUser 
     /// it's taking access to the rootReducer from where it goes to user i.e. a userReducer and assigning the value to currentUser                    
     // state is refered to the entire store, where the property currentUser is a prop in the form of this.props.currentUser
 // });
 
-/// Destructuring
+/// Using Destructuring
 const mapStateToProps = ({user: {currentUser}, cart: {hidden}}) => ({ // {user: {currentUser}, cart: {hidden}}
     currentUser, hidden
     /// it's taking access to the rootReducer from where it goes to user i.e. a userReducer and assigning the value to currentUser                    
