@@ -8,6 +8,9 @@ import { ReactComponent as Logo } from '../../assets/original.svg';
 import { auth } from '../../firebase/firebase.utils';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
+import { createStructuredSelector } from 'reselect';
 
 const Header = ({ currentUser, hidden }) => {
     return (
@@ -46,10 +49,23 @@ const Header = ({ currentUser, hidden }) => {
 // });
 
 /// Using Destructuring
-const mapStateToProps = ({user: {currentUser}, cart: {hidden}}) => ({ // {user: {currentUser}, cart: {hidden}}
-    currentUser, hidden
+/// const mapStateToProps = ({user: {currentUser}, cart: {hidden}}) => ({ // {user: {currentUser}, cart: {hidden}}
+ ///   currentUser, hidden
     /// it's taking access to the rootReducer from where it goes to user i.e. a userReducer and assigning the value to currentUser                    
     // state is refered to the entire store, where the property currentUser is a prop in the form of this.props.currentUser
+///});
+
+// const mapStateToProps = (state) => ({ // {user: {currentUser}, cart: {hidden}}
+    // currentUser: selectCurrentUser(state),
+//    hidden: selectCartHidden(state)
+       /// it's taking access to the rootReducer from where it goes to user i.e. a userReducer and assigning the value to currentUser                    
+       // state is refered to the entire store, where the property currentUser is a prop in the form of this.props.currentUser
+// });
+
+//    OR
+const mapStateToProps = createStructuredSelector({
+   currentUser: selectCurrentUser,
+   hidden: selectCartHidden
 });
 
 export default connect(mapStateToProps)(Header);
