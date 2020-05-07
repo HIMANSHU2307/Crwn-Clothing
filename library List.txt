@@ -3,3 +3,6 @@ npm install react-router-dom
 npm install --save redux-logger react-redux 
 
 npm install reselect
+
+npm install redux-persist
+// Allows the browser to ashe the store based on certain configuration
