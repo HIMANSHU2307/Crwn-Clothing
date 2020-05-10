@@ -3,6 +3,12 @@ npm install react-router-dom
 npm install --save redux-logger react-redux 
 
 npm install reselect
+// avoid rerendering the entire components, inspite renders those components which have some effect on state update
+
 
 npm install redux-persist
 // Allows the browser to ashe the store based on certain configuration
+
+
+npm install react-stripe-checkout
+// Stripe payment
