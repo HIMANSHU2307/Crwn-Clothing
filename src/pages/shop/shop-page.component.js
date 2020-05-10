@@ -1,27 +1,24 @@
-import React, { Component } from 'react';
-import SHOP_DATA from './shop.data.js';
-import CollectionPreview from '../../components/collection-preview/collection-preview.component.js';
+import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectShopCollections } from '../../redux/shop/shop.selectors.js';
+import CollectionOverview from "../../components/collection-overview/collection-overview.component";
+import { Route } from 'react-router-dom';
+import CollectionPage from '../collection/collection.component'
 
-export default class ShopPage extends Component {
-    constructor(props){
-        super(props);
 
-        this.state = {
-            collections: SHOP_DATA
-        }
-    }
+const ShopPage = ({ match }) => { // Match wil work here without using withRoute, because shop is called under Route tag in app.js
 
-    render() {
-        const {collections} = this.state;
-        console.log(collections);
         return (
             <div className='shop-page'>
-                {
-                    collections.map(({id, ...otherSelectionProps})=> (
-                        <CollectionPreview key={id} {...otherSelectionProps}/>
-                    ))
-                }
+                <Route exact path={`${match.path}`} component={CollectionOverview}/>
+                <Route exact path={`${match.path}/:categoryId`} component={CollectionPage}/>
             </div>
         )
-    }
 }
+
+const mapStateToProps = createStructuredSelector({
+    collections: selectShopCollections
+})
+
+export default connect(mapStateToProps)(ShopPage);

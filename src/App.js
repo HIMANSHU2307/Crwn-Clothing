@@ -48,11 +48,12 @@ class App extends Component {
   componentWillUnmount() {
     this.unsubscribeFromAuth();
   }
-
   render() {
+  console.log(this.props.currentUser, 'USSSS');
+
     return (
       <div>
-        <Header />
+        <Header/>
         <Switch>
           <Route exact path='/' component={HomePage}/>
           <Route path='/shop' component={ShopPage}/>
